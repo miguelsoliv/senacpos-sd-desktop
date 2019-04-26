@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "senac-sd-desktop", "senac-sd-desktop\senac-sd-desktop.csproj", "{BD974837-748A-4A0E-A0BE-6A261574B764}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD974837-748A-4A0E-A0BE-6A261574B764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD974837-748A-4A0E-A0BE-6A261574B764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD974837-748A-4A0E-A0BE-6A261574B764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD974837-748A-4A0E-A0BE-6A261574B764}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {413EADB0-0592-4459-B5C4-A73B96E7F25B}
+	EndGlobalSection
+EndGlobal
