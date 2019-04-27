@@ -14,6 +14,18 @@ namespace senac_sd_desktop
         public UC_Cadastrar()
         {
             InitializeComponent();
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            string sep = string.Empty, codecName;
+
+            foreach (var c in codecs)
+            {
+                codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                openFileDialog.Filter = string.Format("{0}{1}{2} ({3})|{3}", openFileDialog.Filter, sep, codecName, c.FilenameExtension);
+                sep = "|";
+            }
+
+            openFileDialog.Filter = string.Format("{0}{1}{2} ({3})|{3}", openFileDialog.Filter, sep, "All Files", "*.*");
         }
 
         private async void btCadastrar_Click(object sender, EventArgs e)
@@ -110,10 +122,12 @@ namespace senac_sd_desktop
 
         private void btProcurar_Click(object sender, EventArgs e)
         {
-            openFileDialog.ShowDialog();
-            if (openFileDialog.FileName != "")
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                pictureBox.Load(openFileDialog.FileName);
+                if (openFileDialog.FileName != "")
+                {
+                    pictureBox.Load(openFileDialog.FileName);
+                }
             }
         }
     }

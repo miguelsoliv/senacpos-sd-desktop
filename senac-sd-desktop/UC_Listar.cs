@@ -28,12 +28,10 @@ namespace senac_sd_desktop
             progressBar.Visible = false;
             dataGridView.Visible = true;
             int counter = 1;
-            string precoFormatado;
 
             foreach (var produto in produtosLista)
             {
-                precoFormatado = string.Format("{0:#.00}", Convert.ToDecimal(produto.Object.Preco));
-                dataGridView.Rows.Add(produto.Key, counter, produto.Object.Nome, precoFormatado, produto.Object.Tipo, produto.Object.Descricao);
+                dataGridView.Rows.Add(produto.Key, counter, produto.Object.Nome, produto.Object.Preco, produto.Object.Tipo, produto.Object.Descricao);
                 counter++;
             }
 

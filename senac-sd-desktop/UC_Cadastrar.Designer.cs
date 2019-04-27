@@ -168,10 +168,6 @@
             this.progressBar.TabIndex = 6;
             this.progressBar.Visible = false;
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog";
-            // 
             // UC_Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
