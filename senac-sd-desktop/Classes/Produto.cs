@@ -1,4 +1,4 @@
-﻿namespace senac_sd_desktop
+﻿namespace senac_sd_desktop.Classes
 {
     class Produto
     {

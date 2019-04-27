@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Firebase.Database;
+using senac_sd_desktop.Classes;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,11 +9,27 @@ namespace senac_sd_desktop
     public partial class Form1 : Form
     {
         private Button buttonSelected;
-        private Color selectedButtonColor = Color.FromArgb(21, 101, 192), normalButtonColor = Color.FromArgb(94, 146, 243);
+        private Color selectedButtonColor = Color.FromArgb(21, 101, 192);
+        private Color normalButtonColor = Color.FromArgb(94, 146, 243);
+        private WMPLib.WindowsMediaPlayer wplayer;
 
         public Form1()
         {
             InitializeComponent();
+
+            var firebaseClient = new FirebaseClient("https://senacpos-sd.firebaseio.com/");
+
+            wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = AppDomain.CurrentDomain.BaseDirectory + "alert_sound.mp3";
+            wplayer.controls.stop();
+
+            firebaseClient.Child("pedidos").AsObservable<Pedido>().Subscribe(p =>
+            {
+                if (p.Key == null)
+                {
+                    wplayer.controls.play();
+                }
+            });
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -43,10 +61,12 @@ namespace senac_sd_desktop
             if (buttonSelected != null)
             {
                 buttonSelected.BackColor = normalButtonColor;
+                buttonSelected.ForeColor = Color.Black;
             }
 
             buttonSelected = bt;
             bt.BackColor = selectedButtonColor;
+            bt.ForeColor = Color.White;
 
             if (c != null)
             {

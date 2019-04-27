@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using Firebase.Storage;
+using senac_sd_desktop.Classes;
 using System;
 using System.Drawing.Imaging;
 using System.IO;
@@ -67,7 +68,7 @@ namespace senac_sd_desktop
             produto.Nome = textNome.Text.Trim();
             produto.Descricao = textDesc.Text.Trim();
             produto.Tipo = comboTipo.Text.Trim();
-            produto.Preco = double.Parse(textPreco.Text);
+            produto.Preco = double.Parse(textPreco.Text.Replace('.', ','));
 
             progressBar.Visible = true;
             btCadastrar.Visible = false;
@@ -77,17 +78,18 @@ namespace senac_sd_desktop
             textDesc.Enabled = false;
             btProcurar.Enabled = false;
 
-            var prod = await firebaseClient.Child("produtos").Child(produto.Tipo).PostAsync(produto);
+            var prod = await firebaseClient.Child("produtos").PostAsync(produto);
 
             var stream = new MemoryStream();
             pictureBox.Image.Save(stream, ImageFormat.Png);
             stream.Position = 0;
 
-            var task = new FirebaseStorage("senacpos-sd.appspot.com").Child(prod.Key).PutAsync(stream);
+            var prodImagem = await new FirebaseStorage("senacpos-sd.appspot.com").Child(prod.Key).PutAsync(stream);
 
-            await task;
+            Imagem img = new Imagem();
+            img.URL = prodImagem;
 
-            MessageBox.Show("Produto cadastrado com sucesso");
+            await firebaseClient.Child("imagensUrl").Child(prod.Key).PostAsync(img);
 
             progressBar.Visible = false;
             btCadastrar.Visible = true;
@@ -96,6 +98,14 @@ namespace senac_sd_desktop
             comboTipo.Enabled = true;
             textDesc.Enabled = true;
             btProcurar.Enabled = true;
+
+            textNome.Text = "";
+            textPreco.Text = "";
+            comboTipo.SelectedIndex = -1;
+            textDesc.Text = "";
+            pictureBox.Image = null;
+
+            MessageBox.Show("Produto '" + produto.Nome + "' cadastrado com sucesso");
         }
 
         private void btProcurar_Click(object sender, EventArgs e)

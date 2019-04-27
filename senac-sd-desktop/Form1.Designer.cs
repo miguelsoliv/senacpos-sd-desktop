@@ -156,6 +156,7 @@
             this.btCadastrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(146)))), ((int)(((byte)(243)))));
             this.btCadastrar.FlatAppearance.BorderSize = 0;
             this.btCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCadastrar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btCadastrar.Location = new System.Drawing.Point(0, 57);
             this.btCadastrar.Name = "btCadastrar";
             this.btCadastrar.Size = new System.Drawing.Size(126, 51);
