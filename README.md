@@ -7,6 +7,7 @@ Utilizando o sistema para desktop, o operador pode cadastrar e listar os produto
 * Notificação em tempo real dos pedidos realizados via app
 * Tela "Sobre" com informações do desenvolvedor e do software (somente design)
 * Alterar dados dos produtos na tela de listagem (**Futuro**)
+* Splash Screen
 
 ### Bibliotecas utilizadas
 * [FirebaseDatabase.net](https://github.com/step-up-labs/firebase-database-dotnet)

@@ -33,7 +33,6 @@ namespace senac_sd_desktop
             if (string.IsNullOrEmpty(textNome.Text))
             {
                 MessageBox.Show("Nome inválido");
-                return;
             }
 
             if (string.IsNullOrEmpty(textPreco.Text))
@@ -98,8 +97,12 @@ namespace senac_sd_desktop
 
             var prodImagem = await new FirebaseStorage("senacpos-sd.appspot.com").Child(prod.Key).PutAsync(stream);
 
+            produto.Id = prod.Key;
+            FormSplash.addProduto(produto);
+
             Imagem img = new Imagem();
             img.URL = prodImagem;
+            FormSplash.addImagem(img);
 
             await firebaseClient.Child("imagensUrl").Child(prod.Key).PostAsync(img);
 

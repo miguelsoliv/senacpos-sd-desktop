@@ -31,7 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.textTipo = new System.Windows.Forms.TextBox();
@@ -43,12 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -78,17 +77,51 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(627, 149);
             this.dataGridView.TabIndex = 14;
-            this.dataGridView.Visible = false;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
-            // progressBar
+            // ColumnId
             // 
-            this.progressBar.Location = new System.Drawing.Point(134, 196);
-            this.progressBar.MarqueeAnimationSpeed = 60;
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(401, 23);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 15;
+            this.ColumnId.HeaderText = "Id";
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.ReadOnly = true;
+            this.ColumnId.Visible = false;
+            // 
+            // ColumnCodigo
+            // 
+            this.ColumnCodigo.HeaderText = "#";
+            this.ColumnCodigo.Name = "ColumnCodigo";
+            this.ColumnCodigo.ReadOnly = true;
+            this.ColumnCodigo.Width = 40;
+            // 
+            // ColumnNome
+            // 
+            this.ColumnNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNome.HeaderText = "Nome";
+            this.ColumnNome.Name = "ColumnNome";
+            this.ColumnNome.ReadOnly = true;
+            // 
+            // ColumnPreco
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.ColumnPreco.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnPreco.HeaderText = "Preço";
+            this.ColumnPreco.Name = "ColumnPreco";
+            this.ColumnPreco.ReadOnly = true;
+            // 
+            // ColumnTipo
+            // 
+            this.ColumnTipo.HeaderText = "Tipo";
+            this.ColumnTipo.Name = "ColumnTipo";
+            this.ColumnTipo.ReadOnly = true;
+            this.ColumnTipo.Width = 150;
+            // 
+            // ColumnDesc
+            // 
+            this.ColumnDesc.HeaderText = "Descrição";
+            this.ColumnDesc.Name = "ColumnDesc";
+            this.ColumnDesc.ReadOnly = true;
+            this.ColumnDesc.Visible = false;
             // 
             // panelInfo
             // 
@@ -106,7 +139,6 @@
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(668, 233);
             this.panelInfo.TabIndex = 16;
-            this.panelInfo.Visible = false;
             // 
             // pictureBox
             // 
@@ -200,55 +232,10 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Nome do Produto:";
             // 
-            // ColumnId
-            // 
-            this.ColumnId.HeaderText = "Id";
-            this.ColumnId.Name = "ColumnId";
-            this.ColumnId.ReadOnly = true;
-            this.ColumnId.Visible = false;
-            // 
-            // ColumnCodigo
-            // 
-            this.ColumnCodigo.HeaderText = "#";
-            this.ColumnCodigo.Name = "ColumnCodigo";
-            this.ColumnCodigo.ReadOnly = true;
-            this.ColumnCodigo.Width = 40;
-            // 
-            // ColumnNome
-            // 
-            this.ColumnNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnNome.HeaderText = "Nome";
-            this.ColumnNome.Name = "ColumnNome";
-            this.ColumnNome.ReadOnly = true;
-            // 
-            // ColumnPreco
-            // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.ColumnPreco.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnPreco.HeaderText = "Preço";
-            this.ColumnPreco.Name = "ColumnPreco";
-            this.ColumnPreco.ReadOnly = true;
-            // 
-            // ColumnTipo
-            // 
-            this.ColumnTipo.HeaderText = "Tipo";
-            this.ColumnTipo.Name = "ColumnTipo";
-            this.ColumnTipo.ReadOnly = true;
-            this.ColumnTipo.Width = 150;
-            // 
-            // ColumnDesc
-            // 
-            this.ColumnDesc.HeaderText = "Descrição";
-            this.ColumnDesc.Name = "ColumnDesc";
-            this.ColumnDesc.ReadOnly = true;
-            this.ColumnDesc.Visible = false;
-            // 
             // UC_Listar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.dataGridView);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F);
@@ -266,7 +253,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox textTipo;

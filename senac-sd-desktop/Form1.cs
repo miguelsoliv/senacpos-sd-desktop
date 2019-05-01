@@ -2,6 +2,7 @@
 using senac_sd_desktop.Classes;
 using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace senac_sd_desktop
@@ -11,25 +12,67 @@ namespace senac_sd_desktop
         private Button buttonSelected;
         private Color selectedButtonColor = Color.FromArgb(21, 101, 192);
         private Color normalButtonColor = Color.FromArgb(94, 146, 243);
-        private WMPLib.WindowsMediaPlayer wplayer;
+        private FormSplash formSplash;
+        private SoundPlayer player;
+        private FirebaseClient firebaseClient;
 
         public Form1()
         {
             InitializeComponent();
 
-            var firebaseClient = new FirebaseClient("https://senacpos-sd.firebaseio.com/");
+            formSplash = new FormSplash(this);
+            formSplash.Show();
 
-            wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = AppDomain.CurrentDomain.BaseDirectory + "alert_sound.mp3";
-            wplayer.controls.stop();
+            player = new SoundPlayer();
+            player.Stream = Properties.Resources.alert_sound;
 
+            firebaseClient = new FirebaseClient("https://senacpos-sd.firebaseio.com/");
+        }
+
+        public void splashClosed()
+        {
             firebaseClient.Child("pedidos").AsObservable<Pedido>().Subscribe(p =>
             {
-                if (p.Key == null)
+                if (p.Object != null)
                 {
-                    wplayer.controls.play();
+                    player.Play();
+                    newPedido();
                 }
             });
+        }
+
+        private void newPedido()
+        {
+            if (btPedidos.BackColor == selectedButtonColor)
+            {
+                return;
+            }
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(this.newPedido));
+            }
+            else
+            {
+                Control c = new UC_Pedidos();
+
+                if (buttonSelected != null)
+                {
+                    buttonSelected.BackColor = normalButtonColor;
+                    buttonSelected.ForeColor = Color.Black;
+                }
+
+                buttonSelected = btPedidos;
+                btPedidos.BackColor = selectedButtonColor;
+                btPedidos.ForeColor = Color.White;
+
+                if (c != null)
+                {
+                    c.Dock = DockStyle.Fill;
+                    panelContent.Controls.Clear();
+                    panelContent.Controls.Add(c);
+                }
+            }
         }
 
         private void button_Click(object sender, EventArgs e)
