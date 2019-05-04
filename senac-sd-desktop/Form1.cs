@@ -12,7 +12,7 @@ namespace senac_sd_desktop
         private Button buttonSelected;
         private Color selectedButtonColor = Color.FromArgb(21, 101, 192);
         private Color normalButtonColor = Color.FromArgb(94, 146, 243);
-        private FormSplash formSplash;
+        private UC_Pedidos uc_pedidos;
         private SoundPlayer player;
         private FirebaseClient firebaseClient;
 
@@ -20,59 +20,14 @@ namespace senac_sd_desktop
         {
             InitializeComponent();
 
-            formSplash = new FormSplash(this);
+            uc_pedidos = new UC_Pedidos();
+            FormSplash formSplash = new FormSplash(this);
             formSplash.Show();
 
             player = new SoundPlayer();
             player.Stream = Properties.Resources.alert_sound;
 
             firebaseClient = new FirebaseClient("https://senacpos-sd.firebaseio.com/");
-        }
-
-        public void splashClosed()
-        {
-            firebaseClient.Child("pedidos").AsObservable<Pedido>().Subscribe(p =>
-            {
-                if (p.Object != null)
-                {
-                    player.Play();
-                    newPedido();
-                }
-            });
-        }
-
-        private void newPedido()
-        {
-            if (btPedidos.BackColor == selectedButtonColor)
-            {
-                return;
-            }
-
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new MethodInvoker(this.newPedido));
-            }
-            else
-            {
-                Control c = new UC_Pedidos();
-
-                if (buttonSelected != null)
-                {
-                    buttonSelected.BackColor = normalButtonColor;
-                    buttonSelected.ForeColor = Color.Black;
-                }
-
-                buttonSelected = btPedidos;
-                btPedidos.BackColor = selectedButtonColor;
-                btPedidos.ForeColor = Color.White;
-
-                if (c != null)
-                {
-                    c.Dock = DockStyle.Fill;
-                    panelContent.Controls.Clear();
-                    panelContent.Controls.Add(c);
-                }
-            }
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -95,7 +50,7 @@ namespace senac_sd_desktop
                     c = new UC_Listar();
                     break;
                 case "btPedidos":
-                    c = new UC_Pedidos();
+                    c = uc_pedidos;
                     break;
                 case "btSobre":
                     break;
@@ -127,6 +82,68 @@ namespace senac_sd_desktop
         private void btFechar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void splashClosed()
+        {
+            // Firebase registra toda a movimentação na "tabela" 'pedidos', incluindo exclusões
+            firebaseClient.Child("pedidos").AsObservable<Pedido>().Subscribe(p =>
+            {
+                if (p.Object != null)
+                {
+                    bool check = false;
+
+                    for (int i = 0; i < FormSplash.getPedidos().Count; i++)
+                    {
+                        if (FormSplash.getPedidos()[i].Id.Equals(p.Key))
+                        {
+                            check = true;
+                            break;
+                        }
+                    }
+
+                    if (btPedidos.BackColor != selectedButtonColor)
+                    {
+                        newPedido();
+                    }
+
+                    if (!check)
+                    {
+                        // Não adicionar o pedido que foi finalizado
+                        if (FormSplash.getIdPedidoDeletado() != p.Key)
+                        {
+                            p.Object.Id = p.Key;
+                            FormSplash.addPedido(p.Object);
+                            uc_pedidos.addPedidoDataGrid(p.Object);
+                            player.Play();
+                        }
+                    }
+                }
+            });
+        }
+
+        private void newPedido()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(this.newPedido));
+            }
+            else
+            {
+                if (buttonSelected != null)
+                {
+                    buttonSelected.BackColor = normalButtonColor;
+                    buttonSelected.ForeColor = Color.Black;
+                }
+
+                buttonSelected = btPedidos;
+                btPedidos.BackColor = selectedButtonColor;
+                btPedidos.ForeColor = Color.White;
+
+                uc_pedidos.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(uc_pedidos);
+            }
         }
     }
 }

@@ -27,6 +27,13 @@ namespace senac_sd_desktop
             textPreco.Text = dataGridView.SelectedRows[0].Cells[3].Value.ToString();
             textTipo.Text = dataGridView.SelectedRows[0].Cells[4].Value.ToString();
             textDesc.Text = dataGridView.SelectedRows[0].Cells[5].Value.ToString();
+            pictureBox.Image = null;
+            btCarregar.Visible = true;
+        }
+
+        private void btCarregar_Click(object sender, EventArgs e)
+        {
+            btCarregar.Visible = false;
             pictureBox.Load(FormSplash.getImagens()[(int)dataGridView.SelectedRows[0].Cells[1].Value - 1].URL);
         }
     }

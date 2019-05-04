@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btCarregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -125,6 +126,7 @@
             // 
             // panelInfo
             // 
+            this.panelInfo.Controls.Add(this.btCarregar);
             this.panelInfo.Controls.Add(this.pictureBox);
             this.panelInfo.Controls.Add(this.textTipo);
             this.panelInfo.Controls.Add(this.textPreco);
@@ -232,6 +234,16 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Nome do Produto:";
             // 
+            // btCarregar
+            // 
+            this.btCarregar.Location = new System.Drawing.Point(115, 141);
+            this.btCarregar.Name = "btCarregar";
+            this.btCarregar.Size = new System.Drawing.Size(82, 30);
+            this.btCarregar.TabIndex = 24;
+            this.btCarregar.Text = "Carregar";
+            this.btCarregar.UseVisualStyleBackColor = true;
+            this.btCarregar.Click += new System.EventHandler(this.btCarregar_Click);
+            // 
             // UC_Listar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -270,5 +282,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPreco;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDesc;
+        private System.Windows.Forms.Button btCarregar;
     }
 }
