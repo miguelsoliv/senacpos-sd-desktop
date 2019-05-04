@@ -24,7 +24,8 @@ namespace senac_sd_desktop
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             textNome.Text = dataGridView.SelectedRows[0].Cells[2].Value.ToString();
-            textPreco.Text = dataGridView.SelectedRows[0].Cells[3].Value.ToString();
+            textPreco.Text = "R$ " + string.Format("{0:#.00}", Convert.ToDecimal(
+                dataGridView.SelectedRows[0].Cells[3].Value.ToString()));
             textTipo.Text = dataGridView.SelectedRows[0].Cells[4].Value.ToString();
             textDesc.Text = dataGridView.SelectedRows[0].Cells[5].Value.ToString();
             pictureBox.Image = null;

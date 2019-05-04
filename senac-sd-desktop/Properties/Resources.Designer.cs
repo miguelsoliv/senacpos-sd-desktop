@@ -63,9 +63,9 @@ namespace senac_sd_desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream alert_sound {
+        internal static System.IO.UnmanagedMemoryStream MGS_Alert {
             get {
-                return ResourceManager.GetStream("alert_sound", resourceCulture);
+                return ResourceManager.GetStream("MGS_Alert", resourceCulture);
             }
         }
     }

@@ -51,7 +51,8 @@ namespace senac_sd_desktop
                     dataGridView.SelectedRows[0].Cells[6].Value.ToString();
                 textEndereco.Text = dataGridView.SelectedRows[0].Cells[7].Value.ToString();
                 textFormaP.Text = dataGridView.SelectedRows[0].Cells[8].Value.ToString();
-                textTotal.Text = "R$ " + dataGridView.SelectedRows[0].Cells[9].Value.ToString();
+                textTotal.Text = "R$ " + string.Format("{0:#.00}", Convert.ToDecimal(
+                    dataGridView.SelectedRows[0].Cells[9].Value.ToString()));
             }
         }
 
@@ -70,20 +71,6 @@ namespace senac_sd_desktop
                     dataGridView.Rows.Remove(dataGridView.SelectedRows[0]);
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Pedido p = new Pedido();
-            p.Cliente = "Cliente Teste";
-            p.Descricao = "Descrição Teste";
-            p.Endereco = "Endereço Teste";
-            p.FormaPagamento = "FormaP";
-            p.Hora = "03:17";
-            p.TelefoneCliente = "Tel Teste";
-            p.Total = 199;
-
-            firebaseClient.Child("pedidos").PostAsync(p);
         }
 
         public void addPedidoDataGrid(Pedido pedido)

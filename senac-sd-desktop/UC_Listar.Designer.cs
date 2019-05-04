@@ -38,6 +38,7 @@
             this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btCarregar = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.textTipo = new System.Windows.Forms.TextBox();
             this.textPreco = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btCarregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -142,6 +142,16 @@
             this.panelInfo.Size = new System.Drawing.Size(668, 233);
             this.panelInfo.TabIndex = 16;
             // 
+            // btCarregar
+            // 
+            this.btCarregar.Location = new System.Drawing.Point(115, 141);
+            this.btCarregar.Name = "btCarregar";
+            this.btCarregar.Size = new System.Drawing.Size(82, 30);
+            this.btCarregar.TabIndex = 24;
+            this.btCarregar.Text = "Carregar";
+            this.btCarregar.UseVisualStyleBackColor = true;
+            this.btCarregar.Click += new System.EventHandler(this.btCarregar_Click);
+            // 
             // pictureBox
             // 
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -212,9 +222,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(374, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.Size = new System.Drawing.Size(42, 16);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Preço R$:";
+            this.label2.Text = "Preço:";
             // 
             // label4
             // 
@@ -233,16 +243,6 @@
             this.label1.Size = new System.Drawing.Size(107, 16);
             this.label1.TabIndex = 19;
             this.label1.Text = "Nome do Produto:";
-            // 
-            // btCarregar
-            // 
-            this.btCarregar.Location = new System.Drawing.Point(115, 141);
-            this.btCarregar.Name = "btCarregar";
-            this.btCarregar.Size = new System.Drawing.Size(82, 30);
-            this.btCarregar.TabIndex = 24;
-            this.btCarregar.Text = "Carregar";
-            this.btCarregar.UseVisualStyleBackColor = true;
-            this.btCarregar.Click += new System.EventHandler(this.btCarregar_Click);
             // 
             // UC_Listar
             // 

@@ -25,7 +25,7 @@ namespace senac_sd_desktop
             formSplash.Show();
 
             player = new SoundPlayer();
-            player.Stream = Properties.Resources.alert_sound;
+            player.Stream = Properties.Resources.MGS_Alert;
 
             firebaseClient = new FirebaseClient("https://senacpos-sd.firebaseio.com/");
         }
@@ -112,10 +112,10 @@ namespace senac_sd_desktop
                         // Não adicionar o pedido que foi finalizado
                         if (FormSplash.getIdPedidoDeletado() != p.Key)
                         {
+                            player.Play();
                             p.Object.Id = p.Key;
                             FormSplash.addPedido(p.Object);
                             uc_pedidos.addPedidoDataGrid(p.Object);
-                            player.Play();
                         }
                     }
                 }

@@ -3,6 +3,7 @@ using Firebase.Database.Query;
 using senac_sd_desktop.Classes;
 using System;
 using System.Collections.Generic;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,6 +12,7 @@ namespace senac_sd_desktop
     public partial class FormSplash : Form
     {
         private static string idPedidoDeletado;
+        private SoundPlayer player;
         private Form1 form;
         private static List<Produto> produtosLista;
         private static List<Imagem> imagensLista;
@@ -24,6 +26,9 @@ namespace senac_sd_desktop
             produtosLista = new List<Produto>();
             imagensLista = new List<Imagem>();
             pedidosLista = new List<Pedido>();
+
+            player = new SoundPlayer();
+            player.Stream = Properties.Resources.MGS_Alert;
         }
 
         private async void FormSplash_Load(object sender, EventArgs e)
@@ -48,6 +53,11 @@ namespace senac_sd_desktop
                 }
 
                 var pedidos = await firebaseClient.Child("pedidos").OnceAsync<Pedido>();
+
+                if (pedidos.Count > 0)
+                {
+                    player.Play();
+                }
 
                 foreach (var pedido in pedidos)
                 {
